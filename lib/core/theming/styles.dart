@@ -52,6 +52,7 @@ abstract class TextStylesManager {
     fontWeight: FontWeightManager.medium,
     fontFamily: 'Nunito',
   );
+
   static TextStyle font18BlackBold = TextStyle(
     color: ColorsManager.black,
     fontSize: 18.sp,
