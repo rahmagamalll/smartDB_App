@@ -25,7 +25,7 @@ class AppRouter {
         );
       case Routes.showQueryScreen:
         return _createPageTransition(
-          child: const ShowQueryScreen(),
+          child:  ShowQueryScreen(),
           transitionType: PageTransitionType.scale,
         );
 
