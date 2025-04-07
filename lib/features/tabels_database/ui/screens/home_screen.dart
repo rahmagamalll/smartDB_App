@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
                 ).animate().fade(duration: 1000.ms).slideY(begin: -0.2),
                 verticalSpacing(50),
                 Text(
-                  'Select a table to view or create.',
+                  'Select a table to view or create .',
                   style: TextStylesManager.font18BlackRegular,
                 ).animate().fade(duration: 800.ms, delay: 300.ms),
                 verticalSpacing(50),
@@ -41,12 +41,20 @@ class HomeScreen extends StatelessWidget {
                       crossAxisSpacing: 16,
                       mainAxisSpacing: 16,
                     ),
-                    itemCount: 2,
+                    itemCount: 4,
                     itemBuilder: (context, index) {
                       return CustomButton(
                         name: buttonNames[index],
                         onTap: () {
-                          context.pushNamed(Routes.showQueryScreen);
+                          if (index == 0) {
+                            context.pushNamed(Routes.viewTableScreen);
+                          } else if (index == 1) {
+                            context.pushNamed(Routes.addNewTableScreen);
+                          } else if (index == 2) {
+                            context.pushNamed(Routes.insertDataIntoTableScreen);
+                          } else if (index == 3) {
+                            context.pushNamed(Routes.showQueryScreen);
+                          }
                         },
                       )
                           .animate()
@@ -66,6 +74,8 @@ class HomeScreen extends StatelessWidget {
 List<String> buttonNames = [
   'View Table',
   'Create Table',
+  'Insert Data',
+  'Show Query',
 ];
 
 class CustomButton extends StatefulWidget {
