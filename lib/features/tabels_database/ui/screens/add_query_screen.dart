@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:software_project/core/helper/extensions.dart';
 import 'package:software_project/core/helper/spacing.dart';
+import 'package:software_project/core/routing/routes.dart';
 import 'package:software_project/core/theming/styles.dart';
 import 'package:software_project/core/widgets/custom_elevation_button.dart';
 import 'package:software_project/core/widgets/top_app_bar.dart';
@@ -29,7 +31,9 @@ class AddQueryScreen extends StatelessWidget {
               const Spacer(),
               CustomElevationButton(
                 title: 'Show Query',
-                onPressed: () {},
+                onPressed: () {
+                  context.pushNamed(Routes.showQueryScreen);
+                },
               )
             ],
           ),

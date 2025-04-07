@@ -77,6 +77,7 @@ class _InsertDataSetionState extends State<InsertDataSetion> {
       children: [
         CustomDropDown(
           hint: 'Choose Table',
+          selectedOption: selectedTable,
           itemsDrop: tableNames,
           onChanged: updateColumns,
         ),

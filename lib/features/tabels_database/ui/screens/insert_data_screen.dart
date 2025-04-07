@@ -28,7 +28,7 @@ class _InsertDataIntoTableScreenState extends State<InsertDataIntoTableScreen> {
                 style: TextStylesManager.font18BlackRegular,
               ),
               verticalSpacing(30),
-              const InsertDataSetion()
+              const Expanded(child: InsertDataSetion())
             ],
           ),
         ),
