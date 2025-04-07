@@ -6,7 +6,6 @@ import 'package:software_project/core/theming/styles.dart';
 import 'package:software_project/core/widgets/custom_drop_down.dart';
 import 'package:software_project/core/widgets/custom_elevation_button.dart';
 import 'package:software_project/core/widgets/top_app_bar.dart';
-import 'package:software_project/features/tabels_database/ui/screens/show_query_screen.dart';
 
 class ViewTableScreen extends StatelessWidget {
   const ViewTableScreen({super.key});
@@ -43,3 +42,16 @@ class ViewTableScreen extends StatelessWidget {
     );
   }
 }
+
+List<String> tableNames = [
+  'Users',
+  'Products',
+  'Orders',
+  'Categories',
+  'Suppliers',
+  'Customers',
+  'Invoices',
+  'Payments',
+  'Shipping',
+  'Reviews',
+];
