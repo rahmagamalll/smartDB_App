@@ -3,7 +3,9 @@ import 'package:software_project/core/routing/routes.dart';
 import 'package:software_project/features/tabels_database/ui/screens/add_new_table_screen.dart';
 import 'package:software_project/features/tabels_database/ui/screens/add_query_screen.dart';
 import 'package:software_project/features/tabels_database/ui/screens/home_screen.dart';
+import 'package:software_project/features/tabels_database/ui/screens/insert_data_screen.dart';
 import 'package:software_project/features/tabels_database/ui/screens/show_query_screen.dart';
+import 'package:software_project/features/tabels_database/ui/screens/view_table_screen.dart';
 
 class AppRouter {
   static Route? generateRoute(RouteSettings settings) {
@@ -26,6 +28,16 @@ class AppRouter {
       case Routes.showQueryScreen:
         return _createPageTransition(
           child:  ShowQueryScreen(),
+          transitionType: PageTransitionType.scale,
+        );
+      case Routes.insertDataIntoTableScreen:
+        return _createPageTransition(
+          child:  const InsertDataIntoTableScreen(),
+          transitionType: PageTransitionType.scale,
+        );
+      case Routes.viewTableScreen:
+        return _createPageTransition(
+          child:  const ViewTableScreen(),
           transitionType: PageTransitionType.scale,
         );
 

@@ -7,7 +7,6 @@ import 'package:software_project/core/widgets/custom_elevation_button.dart';
 import 'package:software_project/core/widgets/top_app_bar.dart';
 
 class ShowQueryScreen extends StatelessWidget {
-  // البيانات المحاكية التي سيتم عرضها (تأتي من الكويري)
   final List<Map<String, String>> queryData = [
     {'column1': 'value1', 'column2': 'value2', 'column3': 'value3'},
     {'column1': 'value4', 'column2': 'value5', 'column3': 'value6'},
@@ -16,6 +15,21 @@ class ShowQueryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<DataColumn> columnHeaders = queryData.isNotEmpty
+        ? queryData[0].keys.map((key) {
+            return DataColumn(label: Text(key));
+          }).toList()
+        : [];
+
+    // تحويل البيانات إلى صفوف في الجدول
+    List<DataRow> rows = queryData.map((data) {
+      return DataRow(
+        cells: data.values.map((value) {
+          return DataCell(Text(value ?? 'N/A'));
+        }).toList(),
+      );
+    }).toList();
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -31,52 +45,36 @@ class ShowQueryScreen extends StatelessWidget {
               ),
               verticalSpacing(30),
               Expanded(
-                child: ListView.builder(
-                  itemCount: queryData.length,
-                  itemBuilder: (context, index) {
-                    var data = queryData[index];
-                    return Card(
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Container(
+                    decoration: BoxDecoration(
                       color: ColorsManager.white,
-                      elevation: 5,
-                      shadowColor: ColorsManager.primaryColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.r),
-                      ),
-                      margin: EdgeInsets.only(bottom: 10.h),
-                      child: Padding(
-                        padding: EdgeInsets.all(16.h),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            for (var key in data.keys)
-                              Padding(
-                                padding: EdgeInsets.only(bottom: 8.h),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      '$key: ',
-                                      style: TextStylesManager
-                                          .font14MediumGrayRegular
-                                          .copyWith(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Text(
-                                        data[key] ?? 'N/A',
-                                        style: TextStylesManager
-                                            .font14MediumGrayRegular,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                          ],
+                      borderRadius: BorderRadius.all(Radius.circular(10.r)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: ColorsManager.primaryColor.withOpacity(0.3),
+                          spreadRadius: 2,
+                          blurRadius: 10,
+                          offset: const Offset(4, 4),
                         ),
+                      ],
+                    ),
+                    child: DataTable(
+
+                      headingRowColor: WidgetStateProperty.all(
+                        ColorsManager.primaryColor.withOpacity(0.5),
                       ),
-                    );
-                  },
+                      dataRowColor: WidgetStateProperty.all(
+                        ColorsManager.primaryColor.withOpacity(0.1),
+                      ),
+
+                      dataTextStyle: TextStylesManager.font16BlackRegular,
+                      headingTextStyle: TextStylesManager.font16BlackMedium,
+                      columns: columnHeaders,
+                      rows: rows,
+                    ),
+                  ),
                 ),
               ),
               CustomElevationButton(
