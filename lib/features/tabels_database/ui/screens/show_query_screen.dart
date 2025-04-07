@@ -21,7 +21,6 @@ class ShowQueryScreen extends StatelessWidget {
           }).toList()
         : [];
 
-    // تحويل البيانات إلى صفوف في الجدول
     List<DataRow> rows = queryData.map((data) {
       return DataRow(
         cells: data.values.map((value) {
