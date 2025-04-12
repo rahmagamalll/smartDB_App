@@ -145,7 +145,7 @@ class SqlDb {
 //get specific table data
  Future<List<Map<String, dynamic>>> getTableData({
   required String tableName,
-  String? whereClause, // اختياري
+  String? whereClause, // اختياري //age>50
 }) async {
   Database? mydb = await getdb;
 
