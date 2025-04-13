@@ -22,22 +22,25 @@ class SqlDb {
   }
 
   _onUpgrade(Database db, int oldversion, int newversion) async {
-  //   await db.execute('''
-  // CREATE TABLE "deletedtodolist" (
-  //   "id" INTEGER  NOT NULL PRIMARY KEY  AUTOINCREMENT, 
-  //   "title" TEXT NOT NULL,
-  //   "subtitle" TEXT NOT NULL,
-  //   "date" TEXT NOT NULL,
-  //   "color" INTEGER NOT NULL
-  // )
-  // ''');
-  //   print("onUpgrade ======");
+    //   await db.execute('''
+    // CREATE TABLE "deletedtodolist" (
+    //   "id" INTEGER  NOT NULL PRIMARY KEY  AUTOINCREMENT,
+    //   "title" TEXT NOT NULL,
+    //   "subtitle" TEXT NOT NULL,
+    //   "date" TEXT NOT NULL,
+    //   "color" INTEGER NOT NULL
+    // )
+    // ''');
+    //   print("onUpgrade ======");
   }
 
-  _onCreate(Database db, int version) async {
+  _onCreate(
+    Database db,
+    int version,
+  ) async {
 //     await db.execute('''
 //   CREATE TABLE "todo" (
-//     "id" INTEGER  NOT NULL PRIMARY KEY  AUTOINCREMENT, 
+//     "id" INTEGER  NOT NULL PRIMARY KEY  AUTOINCREMENT,
 //     "title" TEXT NOT NULL,
 //     "subtitle" TEXT NOT NULL,
 //     "date" TEXT NOT NULL,
@@ -47,7 +50,7 @@ class SqlDb {
 
 //     await db.execute('''
 //   CREATE TABLE "deletedtodolist" (
-//     "id" INTEGER  NOT NULL PRIMARY KEY  AUTOINCREMENT, 
+//     "id" INTEGER  NOT NULL PRIMARY KEY  AUTOINCREMENT,
 //     "title" TEXT NOT NULL,
 //     "subtitle" TEXT NOT NULL,
 //     "date" TEXT NOT NULL,
@@ -81,7 +84,6 @@ class SqlDb {
     return response;
   }
 
-  
 // create table
   Future<void> createTable(
       String tableName, Map<String, String> columns) async {
@@ -96,23 +98,32 @@ class SqlDb {
     print('Table "$tableName" created.');
   }
 
+// get all table names
+  Future<List<String>> getAllTableNames() async {
+    Database? db = await getdb;
+    List<Map<String, dynamic>> result = await db!.rawQuery(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%';");
 
+    List<String> tableNames =
+        result.map((row) => row['name'] as String).toList();
+    return tableNames;
+  }
 
 // insert into table
-  Future<int> insertIntoTable(String tableName, Map<String, dynamic> data) async {
-  Database? mydb = await getdb;
+  Future<int> insertIntoTable(
+      String tableName, Map<String, dynamic> data) async {
+    Database? mydb = await getdb;
 
-  String columns = data.keys.map((key) => '"$key"').join(', ');
-  String valuesPlaceholders = data.keys.map((key) => '?').join(', ');
-  List<dynamic> values = data.values.toList();
+    String columns = data.keys.map((key) => '"$key"').join(', ');
+    String valuesPlaceholders = data.keys.map((key) => '?').join(', ');
+    List<dynamic> values = data.values.toList();
 
-  String sql = 'INSERT INTO "$tableName" ($columns) VALUES ($valuesPlaceholders)';
-  int response = await mydb!.rawInsert(sql, values);
-  print('Inserted into $tableName: $data');
-  return response;
-}
-
-
+    String sql =
+        'INSERT INTO "$tableName" ($columns) VALUES ($valuesPlaceholders)';
+    int response = await mydb!.rawInsert(sql, values);
+    print('Inserted into $tableName: $data');
+    return response;
+  }
 
   // read table
   Future<List<Map<String, dynamic>>> readTable(String tableName) async {
@@ -121,10 +132,6 @@ class SqlDb {
     List<Map<String, dynamic>> response = await mydb!.rawQuery(sql);
     return response;
   }
-
-
-
-
 
   // update table
   Future<int> updateTable(
@@ -140,35 +147,30 @@ class SqlDb {
     return response;
   }
 
-
-
 //get specific table data
- Future<List<Map<String, dynamic>>> getTableData({
-  required String tableName,
-  String? whereClause, // اختياري //age>50
-}) async {
-  Database? mydb = await getdb;
+  Future<List<Map<String, dynamic>>> getTableData({
+    required String tableName,
+    String? whereClause, // اختياري //age>50
+  }) async {
+    Database? mydb = await getdb;
 
-  String sql = 'SELECT * FROM "$tableName"';
-  if (whereClause != null && whereClause.trim().isNotEmpty) {
-    sql += ' WHERE $whereClause';
+    String sql = 'SELECT * FROM "$tableName"';
+    if (whereClause != null && whereClause.trim().isNotEmpty) {
+      sql += ' WHERE $whereClause';
+    }
+
+    List<Map<String, dynamic>> response = await mydb!.rawQuery(sql);
+    return response;
   }
 
-  List<Map<String, dynamic>> response = await mydb!.rawQuery(sql);
-  return response;
-}
-
-
-
   // get columssssssssss name
-Future<List<String>> getTableColumns(String tableName) async {
-  Database? mydb = await getdb;
-  List<Map> result = await mydb!.rawQuery('PRAGMA table_info("$tableName")');
-  List<String> columnNames = result.map((row) => row['name'] as String).toList();
-  return columnNames;
-} 
-
-
+  Future<List<String>> getTableColumns(String tableName) async {
+    Database? mydb = await getdb;
+    List<Map> result = await mydb!.rawQuery('PRAGMA table_info("$tableName")');
+    List<String> columnNames =
+        result.map((row) => row['name'] as String).toList();
+    return columnNames;
+  }
 
 // drop table
 

@@ -1,11 +1,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:software_project/core/helper/spacing.dart';
 import 'package:software_project/core/theming/colors.dart';
 import 'package:software_project/core/theming/styles.dart';
 import 'package:software_project/core/widgets/custom_text_form_field.dart';
+import 'package:software_project/features/tabels_database/logic/add_new_table/add_new_table_cubit.dart';
 
 class AddNewTableTopSection extends StatelessWidget {
   const AddNewTableTopSection({super.key});
@@ -33,6 +35,7 @@ class AddNewTableTopSection extends StatelessWidget {
             ],
           ),
           child: CustomTextFormField(
+            controller: context.read<AddNewTableCubit>().tableNameController,
             hintStyle: TextStylesManager.font14MediumGrayRegular,
             contentPadding: EdgeInsets.all(16.h),
             borderRadius: BorderRadius.circular(10.r),

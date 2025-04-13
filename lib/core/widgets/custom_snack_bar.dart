@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:software_project/core/theming/colors.dart';
 
 class CustomSnackBar {
-
   static void show(BuildContext context, String message,
       {bool isError = false}) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -22,7 +21,7 @@ class CustomSnackBar {
             ),
           ],
         ),
-        backgroundColor: isError ? ColorsManager.primaryColor : Colors.green,
+        backgroundColor: isError ? ColorsManager.red : Colors.green,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
