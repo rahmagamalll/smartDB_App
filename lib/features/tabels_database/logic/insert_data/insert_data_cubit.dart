@@ -15,7 +15,7 @@ class InsertDataCubit extends Cubit<InsertDataState> {
   List<String> columnNames = [];
   List<TextEditingController> controllers = [];
 
-  //تحميل أسماء الجداول من الداتا بيز
+  //load names of tables from DB
   Future<void> loadTableNames() async {
     try {
       tableNames = await sqlDb.getAllTableNames();
@@ -40,7 +40,7 @@ class InsertDataCubit extends Cubit<InsertDataState> {
     }
   }
 
-
+//insert data
   Future<void> insertData() async {
     emit(InsertDataLoading());
     try {
@@ -66,7 +66,7 @@ class InsertDataCubit extends Cubit<InsertDataState> {
     }
   }
 
-  // تنظيف البيانات عند الحاجة
+  // clean controller
   void clearForm() {
     for (final controller in controllers) {
       controller.clear();
