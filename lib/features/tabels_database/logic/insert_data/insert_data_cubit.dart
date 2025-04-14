@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:software_project/core/helper/sql_lite_services.dart';
-import 'package:sqflite/sqflite.dart';
 
 part 'insert_data_state.dart';
 
@@ -16,9 +15,8 @@ class InsertDataCubit extends Cubit<InsertDataState> {
   List<String> columnNames = [];
   List<TextEditingController> controllers = [];
 
-  /// تحميل أسماء الجداول من قاعدة البيانات
+  //تحميل أسماء الجداول من الداتا بيز
   Future<void> loadTableNames() async {
-    //emit(InsertDataLoading());
     try {
       tableNames = await sqlDb.getAllTableNames();
       emit(InsertDataTablesLoaded(tableNames));
@@ -27,9 +25,8 @@ class InsertDataCubit extends Cubit<InsertDataState> {
     }
   }
 
-  /// اختيار جدول، وتحميل الأعمدة الخاصة به
+  //select table and load it's columns
   Future<void> selectTable(String table) async {
-    //emit(InsertDataLoading());
     try {
       selectedTable = table;
       columnNames = await sqlDb.getTableColumns(table);
@@ -43,7 +40,7 @@ class InsertDataCubit extends Cubit<InsertDataState> {
     }
   }
 
-  /// إدخال البيانات في الجدول
+
   Future<void> insertData() async {
     emit(InsertDataLoading());
     try {
@@ -69,7 +66,7 @@ class InsertDataCubit extends Cubit<InsertDataState> {
     }
   }
 
-  /// تنظيف البيانات عند الحاجة
+  // تنظيف البيانات عند الحاجة
   void clearForm() {
     for (final controller in controllers) {
       controller.clear();
