@@ -27,17 +27,19 @@ class AppRouter {
         );
       case Routes.showQueryScreen:
         return _createPageTransition(
-          child:  ShowQueryScreen(),
+          child: ShowQueryScreen(
+            data: settings.arguments as List<Map<String, dynamic>>,
+          ),
           transitionType: PageTransitionType.scale,
         );
       case Routes.insertDataIntoTableScreen:
         return _createPageTransition(
-          child:  const InsertDataIntoTableScreen(),
+          child: const InsertDataIntoTableScreen(),
           transitionType: PageTransitionType.scale,
         );
       case Routes.viewTableScreen:
         return _createPageTransition(
-          child:  const ViewTableScreen(),
+          child: const ViewTableScreen(),
           transitionType: PageTransitionType.scale,
         );
 

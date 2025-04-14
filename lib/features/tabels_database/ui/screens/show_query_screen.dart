@@ -7,7 +7,9 @@ import 'package:software_project/core/widgets/top_app_bar.dart';
 import 'package:software_project/features/tabels_database/ui/widgets/show_query_screen/table_view.dart';
 
 class ShowQueryScreen extends StatelessWidget {
-  const ShowQueryScreen({super.key});
+  final List<Map<String, dynamic>> data;
+
+  const ShowQueryScreen({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +27,16 @@ class ShowQueryScreen extends StatelessWidget {
                 style: TextStylesManager.font18BlackRegular,
               ),
               verticalSpacing(30),
-              TableView(),
+              Expanded(
+                child: data.isEmpty
+                    ? Center(child: Text('No data found.'))
+                    : TableView(querydata: data),
+              ),
               CustomElevationButton(
                 title: 'Execute Another Query',
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+                },
               ),
             ],
           ),
