@@ -30,7 +30,7 @@ class _AddNewTableScreenState extends State<AddNewTableScreen> {
                 verticalSpacing(40),
                 const AddNewTableTopSection(),
                 verticalSpacing(20),
-                Expanded(
+                const Expanded(
                   child: ColumnsList(),
                 ),
               ],

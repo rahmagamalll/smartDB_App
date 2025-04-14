@@ -7,7 +7,7 @@ import 'package:software_project/core/widgets/top_app_bar.dart';
 import 'package:software_project/features/tabels_database/ui/widgets/show_query_screen/table_view.dart';
 
 class ShowQueryScreen extends StatelessWidget {
-  ShowQueryScreen({super.key});
+  const ShowQueryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
