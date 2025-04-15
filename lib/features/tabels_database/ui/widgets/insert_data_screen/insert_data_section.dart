@@ -47,7 +47,7 @@ class InsertDataSetion extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return ColumnDataInput(
                       columnName: cubit.columnNames[index],
-                      columnType: cubit.columnNames[index],
+                      columnType: cubit.columntypes[index],
                       controller: cubit.controllers[index],
                       onDataEntered: (data) {
                         print('Data for ${cubit.columnNames[index]}: $data');
@@ -68,12 +68,48 @@ class InsertDataSetion extends StatelessWidget {
               CustomElevationButton(
                 title: 'Insert Data',
                 onPressed: () {
-                  cubit.insertData();
+                  bool allValid = true;
+                  for (int i = 0; i < cubit.columnNames.length; i++) {
+                    String value = cubit.controllers[i].text;
+                    String type = cubit.columntypes[i];
+
+                    if (!isValidInput(value, type)) {
+                      allValid = false;
+                      CustomSnackBar.show(
+                        context,
+                        'Invalid input for column "${cubit.columnNames[i]}": expected $type',
+                        isError: true,
+                      );
+                      break;
+                    }
+                  }
+
+                  if (allValid) {
+                    cubit.insertData();
+                  }
                 },
               ),
           ],
         );
       },
     ));
+  }
+}
+
+bool isValidInput(String input, String type) {
+  switch (type.toUpperCase()) {
+    case 'INTEGER':
+      return int.tryParse(input) != null;
+    case 'REAL':
+    case 'DOUBLE':
+    case 'FLOAT':
+      return double.tryParse(input) != null;
+    case 'TEXT':
+    case 'VARCHAR':
+      return true; // أي نص مسموح
+    case 'BOOLEAN':
+      return input.toLowerCase() == 'true' || input.toLowerCase() == 'false';
+    default:
+      return true; // لو النوع مش معروف، نعدّي
   }
 }

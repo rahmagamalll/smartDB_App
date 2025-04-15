@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:software_project/core/di/dependency_injection.dart';
 import 'package:software_project/core/routing/routes.dart';
+import 'package:software_project/features/tabels_database/logic/add_new_table/add_new_table_cubit.dart';
 import 'package:software_project/features/tabels_database/ui/screens/add_new_table_screen.dart';
 import 'package:software_project/features/tabels_database/ui/screens/add_query_screen.dart';
 import 'package:software_project/features/tabels_database/ui/screens/drop_table_screen.dart';
@@ -12,7 +15,10 @@ class AppRouter {
     switch (settings.name) {
       case Routes.homeScreen:
         return _createPageTransition(
-          child: const HomeScreen(),
+          child: BlocProvider(
+            create: (context) => getIt<AddNewTableCubit>(),
+            child: const HomeScreen(),
+          ),
           transitionType: PageTransitionType.fade,
         );
       case Routes.addNewTableScreen:

@@ -171,6 +171,13 @@ class SqlDb {
         result.map((row) => row['name'] as String).toList();
     return columnNames;
   }
+  Future<List<String>> getTableColumnsTypes(String tableName) async {
+    Database? mydb = await getdb;
+    List<Map> result = await mydb!.rawQuery('PRAGMA table_info("$tableName")');
+   
+     List<String> columnTypes = result.map((e) => e['type'] as String).toList();
+    return columnTypes;
+  }
 
 // drop table
 

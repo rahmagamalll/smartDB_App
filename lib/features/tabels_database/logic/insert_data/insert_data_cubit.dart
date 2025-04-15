@@ -12,6 +12,7 @@ class InsertDataCubit extends Cubit<InsertDataState> {
   List<String> tableNames = [];
   String? selectedTable;
   List<String> columnNames = [];
+  List<String> columntypes = [];
   List<TextEditingController> controllers = [];
 
   //load names of tables from DB
@@ -29,6 +30,7 @@ class InsertDataCubit extends Cubit<InsertDataState> {
     try {
       selectedTable = table;
       columnNames = await sqlDb.getTableColumns(table);
+      columntypes = await sqlDb.getTableColumnsTypes(table);
       controllers = List.generate(
         columnNames.length,
         (_) => TextEditingController(),
