@@ -43,7 +43,7 @@ class DropTableCubit extends Cubit<DropTableState> {
   //delete specific table data or drop table
   Future<void> deleteTableDataOrDropIt({
     required String tableName,
-    String? whereClause, // اختياري //age>50
+    String? whereClause, 
   }) async {
     emit(DropTableLoading());
     try {

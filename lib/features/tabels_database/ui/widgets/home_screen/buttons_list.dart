@@ -8,7 +8,7 @@ List<String> buttonNames = [
   'Delete Data',
   'Create Table',
   'Insert Data',
-  'Create Query',
+  'Show Query',
 ];
 
 class ButtonsList extends StatelessWidget {
@@ -37,11 +37,6 @@ class ButtonsList extends StatelessWidget {
               } else if (index == 3) {
                 context.pushNamed(Routes.addQueryScreen);
               }
-
-              // final route = Routes.homeButtonRoutes[index];
-              // if (route != null) {
-              //   context.pushNamed(route);
-              // }
             },
           ).animate().scale(duration: 800.ms, delay: (index * 200).ms);
         },

@@ -30,14 +30,6 @@ class AddQueryScreen extends StatelessWidget {
                 ).animate().fade(duration: 600.ms, delay: 300.ms),
                 verticalSpacing(30),
                 const CreateQuerySection(),
-                
-                // const Spacer(),
-                // CustomElevationButton(
-                //   title: 'Show Query',
-                //   onPressed: () {
-                //     context.pushNamed(Routes.showQueryScreen);
-                //   },
-                // )
               ],
             ),
           ),

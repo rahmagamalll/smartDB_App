@@ -106,10 +106,10 @@ bool isValidInput(String input, String type) {
       return double.tryParse(input) != null;
     case 'TEXT':
     case 'VARCHAR':
-      return true; // أي نص مسموح
+      return true; 
     case 'BOOLEAN':
       return input.toLowerCase() == 'true' || input.toLowerCase() == 'false';
     default:
-      return true; // لو النوع مش معروف، نعدّي
+      return true; 
   }
 }

@@ -71,10 +71,8 @@ class _CreateQuerySectionState extends State<CreateQuerySection> {
                     whereClause: whereClauseController.text,
                   );
 
-                  // انتظار حتى تكتمل الدالة
                   cubit.stream.listen((state) {
                     if (state is AddQueryDataLoaded) {
-                      // تمرير البيانات إلى ShowQueryScreen
                       Navigator.push(
                         context,
                         MaterialPageRoute(

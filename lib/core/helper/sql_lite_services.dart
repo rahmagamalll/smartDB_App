@@ -22,66 +22,14 @@ class SqlDb {
   }
 
   _onUpgrade(Database db, int oldversion, int newversion) async {
-    //   await db.execute('''
-    // CREATE TABLE "deletedtodolist" (
-    //   "id" INTEGER  NOT NULL PRIMARY KEY  AUTOINCREMENT,
-    //   "title" TEXT NOT NULL,
-    //   "subtitle" TEXT NOT NULL,
-    //   "date" TEXT NOT NULL,
-    //   "color" INTEGER NOT NULL
-    // )
-    // ''');
-    //   print("onUpgrade ======");
+
   }
 
   _onCreate(
     Database db,
     int version,
   ) async {
-//     await db.execute('''
-//   CREATE TABLE "todo" (
-//     "id" INTEGER  NOT NULL PRIMARY KEY  AUTOINCREMENT,
-//     "title" TEXT NOT NULL,
-//     "subtitle" TEXT NOT NULL,
-//     "date" TEXT NOT NULL,
-//     "color" INTEGER NOT NULL
-//   )
-//  ''');
 
-//     await db.execute('''
-//   CREATE TABLE "deletedtodolist" (
-//     "id" INTEGER  NOT NULL PRIMARY KEY  AUTOINCREMENT,
-//     "title" TEXT NOT NULL,
-//     "subtitle" TEXT NOT NULL,
-//     "date" TEXT NOT NULL,
-//     "color" INTEGER NOT NULL
-//   )
-//   ''');
-//     print(" onCreate ===============");
-  }
-
-  readData(String sql) async {
-    Database? mydb = await getdb;
-    List<Map> response = await mydb!.rawQuery(sql);
-    return response;
-  }
-
-  insertData(String sql) async {
-    Database? mydb = await getdb;
-    int response = await mydb!.rawInsert(sql);
-    return response;
-  }
-
-  updateData(String sql) async {
-    Database? mydb = await getdb;
-    int response = await mydb!.rawUpdate(sql);
-    return response;
-  }
-
-  deleteData(String sql) async {
-    Database? mydb = await getdb;
-    int response = await mydb!.rawDelete(sql);
-    return response;
   }
 
 // create table
@@ -150,7 +98,7 @@ class SqlDb {
 //get specific table data
   Future<List<Map<String, dynamic>>> getTableData({
     required String tableName,
-    String? whereClause, // اختياري //age>50
+    String? whereClause,
   }) async {
     Database? mydb = await getdb;
 
@@ -191,7 +139,7 @@ class SqlDb {
   //delete specific table data or drop table
   Future<void> deleteTableDataOrDropIt({
     required String tableName,
-    String? whereClause, // اختياري //age>50
+    String? whereClause, 
   }) async {
     Database? mydb = await getdb;
 

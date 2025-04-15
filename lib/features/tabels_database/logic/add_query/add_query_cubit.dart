@@ -24,27 +24,11 @@ class AddQueryCubit extends Cubit<AddQueryState> {
     }
   }
 
-  //select table and load it's columns
-  // Future<void> selectTable(String table) async {
-  //   try {
-  //     selectedTable = table;
-  //     columnNames = await sqlDb.getTableColumns(table);
-  //     controllers = List.generate(
-  //       columnNames.length,
-  //       (_) => TextEditingController(),
-  //     );
-  //     emit(AddQueryColumnsLoaded(columnNames));
-  //   } catch (e) {
-  //     emit(AddQueryError('Failed to load columns: $e'));
-  //   }
-  // }
-
   //add query
   Future<void> getTableData({
     required String tableName,
-    String? whereClause, // اختياري //age>50
+    String? whereClause,
   }) async {
-    
     emit(AddQueryLoading());
 
     try {
@@ -56,10 +40,6 @@ class AddQueryCubit extends Cubit<AddQueryState> {
       }
 
       List<Map<String, dynamic>> response = await mydb!.rawQuery(sql);
-      
-      //emit(AddQueryDataLoaded(response));
-      // print('***********************************************');
-      // print('Data fetched: ${response}');
 
       if (response.isNotEmpty) {
         emit(AddQueryDataLoaded(response));

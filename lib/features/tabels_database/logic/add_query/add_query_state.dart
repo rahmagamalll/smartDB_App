@@ -27,7 +27,6 @@ final class AddQueryColumnsLoaded extends AddQueryState{
   final List<String> columns;
   AddQueryColumnsLoaded(this.columns);
 }
-//تحتوى على الداتا لعرض البيانات
 final class AddQueryDataLoaded extends AddQueryState {
   final List<Map<String, dynamic>> data;
   AddQueryDataLoaded(this.data);
