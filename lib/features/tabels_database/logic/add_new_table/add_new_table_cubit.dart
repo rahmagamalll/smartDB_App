@@ -12,7 +12,6 @@ class AddNewTableCubit extends Cubit<AddNewTableState> {
   List<String> columnNames = [];
   Future<void> createTable(Map<String, String> columns) async {
     emit(AddNewTableLoading());
-
     try {
       Database? mydb = await sqlDb.getdb;
 

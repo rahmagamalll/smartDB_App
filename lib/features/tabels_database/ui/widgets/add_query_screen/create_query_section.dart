@@ -60,22 +60,10 @@ class _CreateQuerySectionState extends State<CreateQuerySection> {
                 hintText: 'Enter your query',
               ),
             ),
-            verticalSpacing(20),
+            verticalSpacing(300),
             CustomElevationButton(
               title: 'Show Query',
               onPressed: () {
-                // if (cubit.selectedTable != null) {
-                //   cubit.getTableData(
-                //     tableName: cubit.selectedTable!,
-                //     whereClause: whereClauseController.text,
-                //   );
-                //   context.pushNamed(Routes.showQueryScreen);
-                // } else {
-                //   CustomSnackBar.show(context, 'Please select a table');
-                //   // ScaffoldMessenger.of(context).showSnackBar(
-                //   //   SnackBar(content: Text('Please select a table')),
-                //   // );
-                // }
                 if (cubit.selectedTable != null) {
                   // جلب البيانات من الـ Cubit
                   cubit.getTableData(

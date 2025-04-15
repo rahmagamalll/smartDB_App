@@ -12,7 +12,7 @@ class DropTableCubit extends Cubit<DropTableState> {
 
   List<String> tableNames = [];
   String? selectedTable;
-   List<String> columnNames = [];
+  List<String> columnNames = [];
   List<TextEditingController> controllers = [];
 
   //load names of tables from DB
@@ -25,7 +25,7 @@ class DropTableCubit extends Cubit<DropTableState> {
     }
   }
 
-    //select table and load it's columns
+  //select table and load it's columns
   Future<void> selectTable(String table) async {
     try {
       selectedTable = table;
@@ -40,17 +40,26 @@ class DropTableCubit extends Cubit<DropTableState> {
     }
   }
 
-// drop table
-  Future<void> dropTable(String tableName) async {
+  //delete specific table data or drop table
+  Future<void> deleteTableDataOrDropIt({
+    required String tableName,
+    String? whereClause, // اختياري //age>50
+  }) async {
     emit(DropTableLoading());
     try {
       Database? mydb = await sqlDb.getdb;
-      String sql = 'DROP TABLE IF EXISTS "$tableName"';
-      await mydb!.execute(sql);
-      emit(DropTableSuccess(message: 'table have been deleted'));
-      print('Table "$tableName" dropped.');
-    } on Exception {
-      emit(DropTableError(message: 'table doesnot deleted'));
+
+      if (whereClause != null && whereClause.trim().isNotEmpty) {
+        String sql = 'DELETE FROM $tableName WHERE $whereClause';
+        await mydb!.execute(sql);
+        emit(DropTableSuccess(message: 'record have been deleted'));
+      } else if (whereClause == null) {
+       String sql = 'DROP TABLE IF EXISTS "$tableName"';
+       await mydb!.execute(sql);
+       emit(DropTableSuccess(message: 'table have been deleted'));
+      }
+    } on Exception catch (e) {
+      emit(DropTableError(message: 'table doesnot deleted $e'));
     }
   }
 }

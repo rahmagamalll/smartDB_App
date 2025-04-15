@@ -187,4 +187,20 @@ class SqlDb {
     await mydb!.execute(sql);
     print('Table "$tableName" dropped.');
   }
+
+  //delete specific table data or drop table
+  Future<void> deleteTableDataOrDropIt({
+    required String tableName,
+    String? whereClause, // اختياري //age>50
+  }) async {
+    Database? mydb = await getdb;
+
+    String sql = ' ';
+    if (whereClause != null && whereClause.trim().isNotEmpty) {
+      sql += 'DELETE * FROM "$tableName" WHERE $whereClause';
+    } else if (whereClause == null) {
+      sql = 'DROP TABLE IF EXISTS "$tableName"';
+    }
+    await mydb!.execute(sql);
+  }
 }

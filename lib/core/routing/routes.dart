@@ -5,4 +5,11 @@ class Routes {
   static const String showQueryScreen = "/showQueryScreen";
   static const String insertDataIntoTableScreen = "/insertDataIntoTableScreen";
   static const String viewTableScreen = "/viewTableScreen";
+
+  // static final Map<int, String> homeButtonRoutes = {
+  //   0: viewTableScreen,
+  //   1: addNewTableScreen,
+  //   2: insertDataIntoTableScreen,
+  //   3: addQueryScreen,
+  // };
 }
