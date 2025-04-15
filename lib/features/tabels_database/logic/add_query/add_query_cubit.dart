@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 import 'package:software_project/core/helper/sql_lite_services.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -58,18 +57,15 @@ class AddQueryCubit extends Cubit<AddQueryState> {
 
       List<Map<String, dynamic>> response = await mydb!.rawQuery(sql);
       
-      emit(AddQueryDataLoaded(response));
-      print('***********************************************');
-      print('Data fetched: ${response}');
+      //emit(AddQueryDataLoaded(response));
+      // print('***********************************************');
+      // print('Data fetched: ${response}');
 
-      // if (response.isNotEmpty) {
-      //   // emit(AddQuerySuccess('Data loaded successfully.'));
-      //   //عشان اقدر اعرض البيانات
-      //   emit(AddQueryDataLoaded(response));
-      //   // ممكن تعمل emit(StateWithData(response)) لو عندك استيت كده
-      // } else {
-      //   emit(AddQueryError('No data found.'));
-      // }
+      if (response.isNotEmpty) {
+        emit(AddQueryDataLoaded(response));
+      } else {
+        emit(AddQueryError('No data found.'));
+      }
     } on Exception catch (e) {
       emit(AddQueryError('Error fetching data: $e'));
     }
