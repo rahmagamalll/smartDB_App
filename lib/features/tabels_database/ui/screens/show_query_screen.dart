@@ -29,7 +29,7 @@ class ShowQueryScreen extends StatelessWidget {
               verticalSpacing(30),
               Expanded(
                 child: data.isEmpty
-                    ? Center(child: Text('No data found.'))
+                    ? const Center(child: Text('No data found.'))
                     : TableView(querydata: data),
               ),
               CustomElevationButton(

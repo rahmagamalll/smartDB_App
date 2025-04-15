@@ -36,7 +36,7 @@ class InsertDataSetion extends StatelessWidget {
               selectedOption: cubit.selectedTable,
               itemsDrop: cubit.tableNames,
               onChanged: (value) {
-                cubit.selectTable(value!);
+                cubit.selectTable(value);
               },
             ),
             verticalSpacing(20),

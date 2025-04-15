@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 import 'package:software_project/core/helper/sql_lite_services.dart';
 
 part 'insert_data_state.dart';

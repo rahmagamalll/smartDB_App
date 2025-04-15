@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:software_project/core/helper/extensions.dart';
@@ -6,7 +5,7 @@ import 'package:software_project/core/routing/routes.dart';
 import 'package:software_project/features/tabels_database/ui/widgets/home_screen/custom_button.dart';
 
 List<String> buttonNames = [
-  'View Table',
+  'Drop Table',
   'Create Table',
   'Insert Data',
   'Create Query',
