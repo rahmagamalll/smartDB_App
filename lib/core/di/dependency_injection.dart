@@ -9,7 +9,7 @@ final getIt = GetIt.instance;
 
 Future<void> setupGetIt() async {
   getIt.registerLazySingleton<SqlDb>(() => SqlDb());
-
+ 
   getIt.registerSingleton<AddNewTableCubit>(AddNewTableCubit());
   getIt.registerFactory<InsertDataCubit>(() => InsertDataCubit(getIt()));
   getIt.registerFactory<AddQueryCubit>(() => AddQueryCubit(getIt()));
