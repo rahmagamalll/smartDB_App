@@ -13,13 +13,8 @@ final class DropTableSuccess extends DropTableState {
   DropTableSuccess({required this.message});
 }
 
-final class DropTableError extends DropTableState {
+final class DropTableFailuer extends DropTableState {
   final String message;
-
-  DropTableError({required this.message});
+  DropTableFailuer({required this.message});
 }
 
-class DropTablesLoaded extends DropTableState {
-  final List<String> tables;
-  DropTablesLoaded(this.tables);
-}

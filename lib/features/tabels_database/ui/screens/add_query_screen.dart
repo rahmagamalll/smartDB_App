@@ -15,7 +15,7 @@ class AddQueryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<AddQueryCubit>()..loadTableNames(),
+      create: (context) => getIt<AddQueryCubit>(),
       child: Scaffold(
         body: SafeArea(
           child: Padding(

@@ -1,4 +1,5 @@
 import 'package:sqflite/sqflite.dart';
+// ignore: depend_on_referenced_packages
 import 'package:path/path.dart';
 
 class SqlDb {
@@ -16,20 +17,8 @@ class SqlDb {
   intialDb() async {
     String databasepath = await getDatabasesPath();
     String path = join(databasepath, 'smartdb.db');
-    Database mydb = await openDatabase(path,
-        onCreate: _onCreate, version: 2, onUpgrade: _onUpgrade);
+    Database mydb = await openDatabase(path);
     return mydb;
-  }
-
-  _onUpgrade(Database db, int oldversion, int newversion) async {
-
-  }
-
-  _onCreate(
-    Database db,
-    int version,
-  ) async {
-
   }
 
 // create table
@@ -43,7 +32,6 @@ class SqlDb {
 
     String sql = 'CREATE TABLE IF NOT EXISTS "$tableName" ($columnDefs)';
     await mydb!.execute(sql);
-    print('Table "$tableName" created.');
   }
 
 // get all table names
@@ -69,7 +57,6 @@ class SqlDb {
     String sql =
         'INSERT INTO "$tableName" ($columns) VALUES ($valuesPlaceholders)';
     int response = await mydb!.rawInsert(sql, values);
-    print('Inserted into $tableName: $data');
     return response;
   }
 
@@ -91,7 +78,6 @@ class SqlDb {
     List<dynamic> values = data.values.toList();
     String sql = 'UPDATE "$tableName" SET $setClause WHERE $whereClause';
     int response = await mydb!.rawUpdate(sql, values);
-    print('Updated $tableName: $data');
     return response;
   }
 
@@ -133,7 +119,6 @@ class SqlDb {
     Database? mydb = await getdb;
     String sql = 'DROP TABLE IF EXISTS "$tableName"';
     await mydb!.execute(sql);
-    print('Table "$tableName" dropped.');
   }
 
   //delete specific table data or drop table

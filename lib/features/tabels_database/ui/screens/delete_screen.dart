@@ -11,7 +11,7 @@ class DeleteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<DropTableCubit>()..loadTableNames(),
+      create: (context) => getIt<DropTableCubit>(),
       child: Scaffold(
         body: SafeArea(
           child: Padding(

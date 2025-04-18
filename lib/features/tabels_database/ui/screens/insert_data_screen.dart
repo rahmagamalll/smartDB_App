@@ -19,7 +19,7 @@ class _InsertDataIntoTableScreenState extends State<InsertDataIntoTableScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<InsertDataCubit>()..loadTableNames(),
+      create: (context) => getIt<InsertDataCubit>(),
       child: Scaffold(
         body: SafeArea(
           child: Padding(
@@ -34,7 +34,9 @@ class _InsertDataIntoTableScreenState extends State<InsertDataIntoTableScreen> {
                   style: TextStylesManager.font18BlackRegular,
                 ),
                 verticalSpacing(30),
-                const Expanded(child: InsertDataSetion())
+                const Expanded(
+                  child: InsertDataSetion(),
+                )
               ],
             ),
           ),
