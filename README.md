@@ -1,16 +1,27 @@
-# software_project
+# smartDB_APP
 
-A new Flutter project.
+A Flutter application that allows users to **create SQLite tables dynamically from the UI**, insert data, view data in a table format, and run custom queries — without writing any SQL manually.
 
-## Getting Started
+## 🚀 Features
 
-This project is a starting point for a Flutter application.
+- 📂 Create custom tables with any number of columns
+- ✍️ Choose data types (`TEXT`, `INTEGER`, `REAL`, `BOOLEAN`)
+- ➕ Insert rows into any table dynamically
+- 🔍 View table data using Flutter `DataTable`
+- 📋 Run custom SQL queries and get results
+- 🧩 Drop tables, get column names programmatically
 
-A few resources to get you started if this is your first Flutter project:
+## 📱 Screens
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **Create Table Screen**: Define table name and column structure
+- **Insert Data Screen**: Add rows into the selected table
+- **Query Builder Screen**: Run custom SELECT queries
+- **View Data Screen**: Display any table in a readable UI
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🧰 Tech Stack
+
+- **Flutter**
+- **Sqlite** – Local database storage
+- **Bloc / setState** – For state management
+
+
