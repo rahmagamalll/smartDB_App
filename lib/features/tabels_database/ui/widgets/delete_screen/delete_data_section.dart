@@ -42,7 +42,7 @@ class _DeleteDataSectionState extends State<DeleteDataSection> {
     return BlocListener<DropTableCubit, DropTableState>(
       listener: (context, state) {
         if (state is DropTableLoading) {
-       CircularProgressIndicator();
+          const CircularProgressIndicator();
         } else if (state is DropTableSuccess) {
           context.pop();
           CustomSnackBar.show(context, state.message);
@@ -82,6 +82,7 @@ class _DeleteDataSectionState extends State<DeleteDataSection> {
               ),
               boxShadow: [
                 BoxShadow(
+                  // ignore: deprecated_member_use
                   color: ColorsManager.primaryColor.withOpacity(0.3),
                   spreadRadius: 2,
                   blurRadius: 10,

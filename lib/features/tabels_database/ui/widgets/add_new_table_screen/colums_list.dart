@@ -37,7 +37,7 @@ class _ColumnsListState extends State<ColumnsList> {
         } else if (state is AddNewTableFailuer) {
           CustomSnackBar.show(context, state.errMessage, isError: true);
         } else if (state is AddNewTableLoading) {
-          CircularProgressIndicator();
+          const CircularProgressIndicator();
         }
       },
       child: Column(

@@ -7,7 +7,6 @@ part 'drop_table_state.dart';
 class DropTableCubit extends Cubit<DropTableState> {
   DropTableCubit(this.sqlDb) : super(DropTableInitial());
   final SqlDb sqlDb;
-
   Future<void> deleteTableDataOrDropIt({
     required String tableName,
     String? whereClause,

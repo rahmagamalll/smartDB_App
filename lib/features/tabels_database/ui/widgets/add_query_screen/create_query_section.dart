@@ -52,7 +52,7 @@ class _CreateQuerySectionState extends State<CreateQuerySection> {
         } else if (state is AddQueryFailuer) {
           CustomSnackBar.show(context, 'Error: ${state.errMessage}');
         } else if (state is AddQueryLoading) {
-          CircularProgressIndicator();
+          const CircularProgressIndicator();
         }
       },
       child: SafeArea(
@@ -84,6 +84,7 @@ class _CreateQuerySectionState extends State<CreateQuerySection> {
                     ),
                     boxShadow: [
                       BoxShadow(
+                        // ignore: deprecated_member_use
                         color: ColorsManager.primaryColor.withOpacity(0.3),
                         spreadRadius: 2,
                         blurRadius: 10,
@@ -109,7 +110,7 @@ class _CreateQuerySectionState extends State<CreateQuerySection> {
                         return;
                       }
 
-                      context.read<AddQueryCubit>().AddQuery(
+                      context.read<AddQueryCubit>().addQuery(
                             tableName: selectedTable!,
                             whereClause: whereClauseController.text,
                           );

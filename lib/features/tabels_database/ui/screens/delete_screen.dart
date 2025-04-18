@@ -16,7 +16,7 @@ class DeleteScreen extends StatelessWidget {
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
-            child: DeleteDataSection(),
+            child: const DeleteDataSection(),
           ),
         ),
       ),

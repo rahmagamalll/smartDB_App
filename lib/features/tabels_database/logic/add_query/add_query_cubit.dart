@@ -7,10 +7,14 @@ part 'add_query_state.dart';
 class AddQueryCubit extends Cubit<AddQueryState> {
   AddQueryCubit(this.sqlDb) : super(AddQueryInitial());
   final SqlDb sqlDb;
- Future<void> AddQuery({required String tableName, required String whereClause,}) async {
+  Future<void> addQuery({
+    required String tableName,
+    required String whereClause,
+  }) async {
     emit(AddQueryLoading());
     try {
-   List<Map<String, dynamic>>  responce = await sqlDb.getTableData(tableName: tableName, whereClause:  whereClause);
+      List<Map<String, dynamic>> responce = await sqlDb.getTableData(
+          tableName: tableName, whereClause: whereClause);
       if (responce.isNotEmpty) {
         emit(AddQuerySuccess(responce));
       } else {
@@ -21,7 +25,5 @@ class AddQueryCubit extends Cubit<AddQueryState> {
     } catch (e) {
       emit(AddQueryFailuer('Failed to add query: $e'));
     }
- }
-
-
+  }
 }

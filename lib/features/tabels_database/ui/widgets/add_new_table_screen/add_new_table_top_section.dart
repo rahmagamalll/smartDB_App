@@ -27,6 +27,7 @@ class AddNewTableTopSection extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(10.r)),
             boxShadow: [
               BoxShadow(
+                // ignore: deprecated_member_use
                 color: ColorsManager.primaryColor.withOpacity(0.3),
                 spreadRadius: 2,
                 blurRadius: 10,

@@ -62,7 +62,7 @@ class _InsertDataSetionState extends State<InsertDataSetion> {
         } else if (state is InsertDataFailuer) {
           CustomSnackBar.show(context, state.message, isError: true);
         } else if (state is InsertDataLoading) {
-            CircularProgressIndicator();
+          const CircularProgressIndicator();
         }
       },
       child: Column(
