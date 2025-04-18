@@ -1,6 +1,6 @@
 # smartDB_APP
 
-A Flutter application that allows users to **create SQLite tables dynamically from the UI**, insert data, view data in a table format, and run custom queries — without writing any SQL manually.
+A Flutter application that allows users to **create SQLite tables dynamically from the UI**, insert data, view data in a table format, and run custom queries.
 
 ## 🚀 Features
 
