@@ -18,7 +18,7 @@ class TableView extends StatelessWidget {
     List<DataRow> rows = querydata.map((data) {
       return DataRow(
         cells: data.values.map((value) {
-          return DataCell(Text(value.toString())); // Convert value to string
+          return DataCell(Text(value.toString()));
         }).toList(),
       );
     }).toList();
@@ -33,9 +33,11 @@ class TableView extends StatelessWidget {
           ),
           child: DataTable(
             headingRowColor: WidgetStateProperty.all(
+              // ignore: deprecated_member_use
               ColorsManager.primaryColor.withOpacity(0.5),
             ),
             dataRowColor: WidgetStateProperty.all(
+              // ignore: deprecated_member_use
               ColorsManager.primaryColor.withOpacity(0.1),
             ),
             dataTextStyle: TextStylesManager.font16BlackRegular,
@@ -48,4 +50,3 @@ class TableView extends StatelessWidget {
     );
   }
 }
-

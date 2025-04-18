@@ -34,12 +34,10 @@ class _ColumnsListState extends State<ColumnsList> {
           context.read<AddNewTableCubit>().tableNameController.clear();
           context.pop();
           CustomSnackBar.show(context, state.message);
-          // columns.clear();
-          // fieldKeys.clear();
-        } else if (state is AddNewTableError) {
-          CustomSnackBar.show(context, state.message, isError: true);
+        } else if (state is AddNewTableFailuer) {
+          CustomSnackBar.show(context, state.errMessage, isError: true);
         } else if (state is AddNewTableLoading) {
-          CustomSnackBar.show(context, 'Creating table...');
+          const CircularProgressIndicator();
         }
       },
       child: Column(

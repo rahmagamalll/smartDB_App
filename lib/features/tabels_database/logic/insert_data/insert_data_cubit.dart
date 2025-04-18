@@ -6,72 +6,15 @@ part 'insert_data_state.dart';
 
 class InsertDataCubit extends Cubit<InsertDataState> {
   InsertDataCubit(this.sqlDb) : super(InsertDataInitial());
-
   final SqlDb sqlDb;
-
-  List<String> tableNames = [];
-  String? selectedTable;
-  List<String> columnNames = [];
-  List<String> columntypes = [];
-  List<TextEditingController> controllers = [];
-
-  //load names of tables from DB
-  Future<void> loadTableNames() async {
-    try {
-      tableNames = await sqlDb.getAllTableNames();
-      emit(InsertDataTablesLoaded(tableNames));
-    } catch (e) {
-      emit(InsertDataError('Failed to load table names: $e'));
-    }
-  }
-
-  //select table and load it's columns
-  Future<void> selectTable(String table) async {
-    try {
-      selectedTable = table;
-      columnNames = await sqlDb.getTableColumns(table);
-      columntypes = await sqlDb.getTableColumnsTypes(table);
-      controllers = List.generate(
-        columnNames.length,
-        (_) => TextEditingController(),
-      );
-      emit(InsertDataColumnsLoaded(columnNames));
-    } catch (e) {
-      emit(InsertDataError('Failed to load columns: $e'));
-    }
-  }
-
-//insert data
-  Future<void> insertData() async {
+  Future<void> insertData(
+      {required String table, required Map<String, dynamic> data}) async {
     emit(InsertDataLoading());
     try {
-      final db = await sqlDb.getdb;
-
-      Map<String, dynamic> data = {};
-      for (int i = 0; i < columnNames.length; i++) {
-        data[columnNames[i]] = controllers[i].text;
-      }
-
-      String columnsString = data.keys.map((col) => '"$col"').join(', ');
-      String placeholders = data.keys.map((_) => '?').join(', ');
-      List<dynamic> values = data.values.toList();
-
-      await db!.rawInsert(
-        'INSERT INTO "$selectedTable" ($columnsString) VALUES ($placeholders)',
-        values,
-      );
-
+      await sqlDb.insertIntoTable(table, data);
       emit(InsertDataSuccess('Data inserted successfully.'));
     } catch (e) {
-      emit(InsertDataError('Insert failed: $e'));
+      emit(InsertDataFailuer('Insert failed: $e'));
     }
-  }
-
-  // clean controller
-  void clearForm() {
-    for (final controller in controllers) {
-      controller.clear();
-    }
-    emit(InsertDataFormCleared());
   }
 }

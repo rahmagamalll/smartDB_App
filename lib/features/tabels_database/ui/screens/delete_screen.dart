@@ -11,12 +11,12 @@ class DeleteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<DropTableCubit>()..loadTableNames(),
+      create: (context) => getIt<DropTableCubit>(),
       child: Scaffold(
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
-            child: DeleteDataSection(),
+            child: const DeleteDataSection(),
           ),
         ),
       ),
